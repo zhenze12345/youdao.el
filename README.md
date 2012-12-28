@@ -5,7 +5,7 @@ youdao.el
 
 使用前需要到
 
-http://http://fanyi.youdao.com/openapi?path=data-mode
+http://fanyi.youdao.com/openapi?path=data-mode
 
 去申请一个key
 
