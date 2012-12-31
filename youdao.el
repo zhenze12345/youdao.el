@@ -102,7 +102,7 @@
                                  (match-beginning 1)
                                  (match-end 1))
                       "0"))
-    (cond ((string-match "\"explains\":\\[\\(\\(\"[^\\|\\\"]*\",\\)*\"[^\\|\\\"]*\"\\)\\]" msg)
+    (cond ((string-match "\"explains\":\\[\\(\\(\"\\([^\\{}]\\|\\\"\\)*\",\\)*\"\\([^\\{}]\\|\\\"\\)*\"\\)\\]" msg)
            (let ((result (reduce
                           `(lambda (str1 str2)
                              (concat str1 "\n" str2))
@@ -116,12 +116,15 @@
                             ",")))))
              (if result
                  (pos-tip-show result))))
-          ((string-match "\"translation\":\\[\"\\([^\\|\\\"]*\\)\"\\]" msg)
+          ((string-match "\"translation\":\\[\"\\(\\([^\\{}]\\|\\\"\\)*\\)\"\\]" msg)
            (pos-tip-show (substring msg
                                     (match-beginning 1)
                                     (match-end 1)))))))
 
 (defun youdao-filter (proc msg)
+  (set-buffer (get-buffer "*scratch*"))
+  (erase-buffer)
+  (insert msg)
   (youdao-show-tips msg)
   (youdao-cleanup))
 
