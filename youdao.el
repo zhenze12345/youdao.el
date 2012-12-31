@@ -122,9 +122,6 @@
                                     (match-end 1)))))))
 
 (defun youdao-filter (proc msg)
-  (set-buffer (get-buffer "*scratch*"))
-  (erase-buffer)
-  (insert msg)
   (youdao-show-tips msg)
   (youdao-cleanup))
 
